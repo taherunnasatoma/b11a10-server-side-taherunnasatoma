@@ -30,6 +30,12 @@ async function run() {
 
     const roommatesCollection = client.db('roommateDB').collection('roommates')
 
+    app.get('/roommates',async(req,res)=>{
+      const cursor = roommatesCollection.find();
+      const result=await cursor.toArray()
+      res.send(result)
+    })
+
     app.post('/roommates',async(req,res)=>{
         const newRoommate = req.body;
         console.log(newRoommate)
